@@ -11,4 +11,4 @@ let prog = [
   {key: '#label7', value: () => '#RETURN'.binding()('#n'.binding())}
 ]
 
-console.log(PROG.withInitDo(args, prog))
+PROG.withInitDo(args, prog)
