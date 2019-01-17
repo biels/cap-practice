@@ -1,4 +1,4 @@
-const PROG = require('./prog')
+const PROG = require('./prog-rec')
 
 
 // PROG withInit: {{ #n . 10 } . { #coll . OrderedCollection new }}  do:

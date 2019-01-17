@@ -15,7 +15,7 @@ String.prototype.changeBinding = function (to) {
 };
 String.prototype.bindTo = function (to, _in) {
   changeBinding(this, to);
-  return _in
+  return _in() //Equivalent to value
 };
 
 function withInitDo(args, program) {
@@ -42,6 +42,6 @@ function withInitDo(args, program) {
   let bindProgram = (arr, inner) => bindStructure(arr, instructionTransform, inner)
   //`[ ${program[0].key} binding value ]`
   let compiled = bindArgs(args, bindProgram(program, () => program[0][0].binding()()))
-  while (true) compiled = compiled();
+  compiled()
+  module.exports = {withInitDo}
 }
-module.exports = {withInitDo}
