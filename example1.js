@@ -1,14 +1,14 @@
 const PROG = require('./prog')
 
-let args = [{key: '#n', value: 0}]
+let args = [['#n', 0], '#x']
 let prog = [
-  {key: '#label1', value: () => '#n'.changeBinding(0)},
-  {key: '#label2', value: () => '#n'.changeBinding('#n'.binding() + 1)},
-  {key: '#label3', value: () => '#n'.changeBinding('#n'.binding() + 1)},
-  {key: '#label4', value: () => '#n'.changeBinding('#n'.binding() + 1)},
-  {key: '#label5', value: () => '#n'.changeBinding('#n'.binding() + 1)},
-  {key: '#label6', value: () => '#n'.changeBinding('#n'.binding() + 1)},
-  {key: '#label7', value: () => '#RETURN'.binding()('#n'.binding())}
+  [ '#label1', () => '#x'.changeBinding(4)],
+  [ '#label2', () => '#n'.changeBinding('#n'.binding() + 1)],
+  [ '#label3', () => '#n'.changeBinding('#n'.binding() + 1)],
+  [ '#label4', () => '#n'.changeBinding('#n'.binding() + 1)],
+  [ '#label5', () => '#n'.changeBinding('#n'.binding() + 1)],
+  [ '#label6', () => '#n'.changeBinding('#n'.binding() + 1)],
+  [ '#label7', () => '#RETURN'.binding()('#x'.binding())]
 ]
 
-console.log(PROG.withInitDo(args, prog))
+PROG.withInitDo(args, prog)
