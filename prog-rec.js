@@ -19,7 +19,15 @@ String.prototype.bindTo = function (to, _in) {
 };
 
 let build = (args, program, inner, i, finishedArgs) => {
-  let getArr = () => finishedArgs ? program : args;
+  let getArr = () => {
+    let result;
+    if(finishedArgs){
+      result = program;
+    } else {
+      result = args
+    }
+    return result;
+  };
   let arr = getArr();
   if (i > arr.length - 1) {
     if (finishedArgs) {
