@@ -1,7 +1,7 @@
 const PROG = require('./prog')
+// Fibonacci of #n
 
-
-let args = [['#n', 11], ['#fib', 1], ["#prevFib", 1], ['#i', 2], ['#temp', 0]]
+let args = [['#n', 10], ['#fib', 1], ["#prevFib", 1], ['#i', 2], ['#temp', 0]]
 let prog = [
   [ '#label1', () => {
     if('#n'.binding() <= 1) '#RETURN'.binding()('#n'.binding())
