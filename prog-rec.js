@@ -21,7 +21,7 @@ String.prototype.bindTo = function (to, _in) {
 let build = (args, program, inner, i, finishedArgs) => {
   let getArr = () => {
     let result;
-    if(finishedArgs){
+    if (finishedArgs) {
       result = program;
     } else {
       result = args
@@ -31,7 +31,7 @@ let build = (args, program, inner, i, finishedArgs) => {
   let arr = getArr();
   if (i > arr.length - 1) {
     if (finishedArgs) {
-      return inner();
+      return inner;
     }
     finishedArgs = true;
     i = 0;
@@ -41,7 +41,7 @@ let build = (args, program, inner, i, finishedArgs) => {
   if (!finishedArgs) {
     // Arg
     if (typeof element === "string") element = [element, null];
-    element[0].bindTo(element[1], () => build(args, program, inner, i + 1, finishedArgs))
+    return element[0].bindTo(element[1], () => build(args, program, inner, i + 1, finishedArgs))
 
   } else {
     // Instruction
@@ -55,14 +55,16 @@ let build = (args, program, inner, i, finishedArgs) => {
       element[1]();
       next[0].binding()()
     };
-    element[0].bindTo(to, () => build(args, program, inner, i + 1, finishedArgs));
+    return element[0].bindTo(to, () => build(args, program, inner, i + 1, finishedArgs));
   }
 }
+
 function withInitDo(args, program) {
   if (program.length === 0) return null;
   let main = () => program[0][0].binding()();
 
-  build(args, program, main, 0, false)
+  let a = build(args, program, main, 0, false)
+  a()
 
 }
 
